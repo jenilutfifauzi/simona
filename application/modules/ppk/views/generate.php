@@ -33,7 +33,7 @@
                 </div>
                       
                 <?php echo anchor('ppk/ppk/editpin/1'
-                  ,'<div class="btn btn-danger btn-sm"<i class="fa fa-edit">Ubah OTP</i></div>') ?>
+                  ,'<div class="btn btn-danger btn-sm"<i class="fa fa-edit">Ubah PIN</i></div>') ?>
                   
               </div>
               </div>

@@ -88,7 +88,6 @@
                       <thead> 
                       <tr>
                           <th>No</th>
-                          <th>Id</th>
                           <th>Komponen</th>
                           <th>Nama Kegiatan</th>
                           <th>Waktu Pelaksanaan</th>
@@ -102,7 +101,6 @@
                       <tbody>
                       <tr>
                           <td><?= $no++ ?></td>
-                          <td><?= $users['id'] ?></td>
                           <td><?= $users['komponen'] ?></td>
                           <td><?= $users['nama_kegiatan'] ?></td>
                           <td><?= $users['tgl'] ?></td>

@@ -34,7 +34,7 @@
                 <label for="keterangan" class="col-sm-2 col-form-label">Kepada</label>
                 <div class="col-sm-10">
                   <select class="form-control" name="kepada">
-                          <option>Bagian Keuangan</option>
+                          <option>Bagian Perencanaan</option>
                   </select>   
                 </div>                  
               </div>

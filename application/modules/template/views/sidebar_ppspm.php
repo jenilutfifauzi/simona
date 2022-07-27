@@ -11,12 +11,12 @@
               <li class="nav-item">
                 <a href="<?php echo base_url('perencanaan/perencanaan') ?>" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
                 <a href="<?php echo base_url('perencanaan/perencanaan') ?>" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Generate Code</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="<?php echo base_url('ppspm/ppspm/generatecode') ?>">Generate code</a></li>
                 </ul>
-              </li>
+              </li> -->
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Monitoring</span></a>
                 <ul class="dropdown-menu">

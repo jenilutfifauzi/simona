@@ -94,7 +94,7 @@ class Monitoring extends MY_Controller {
         $this->load->view('template/navbar',$data);
         $this->load->view('template/sidebar_bagiankeuangan');
         $this->load->view('Vrekapkegiatan',$data);
-        $this->load->view('template/footer');
+        $this->load->view('template/footer_filter');
         
     }
 
@@ -107,6 +107,7 @@ class Monitoring extends MY_Controller {
         );
         $data['data_terlaksana'] = $this->m_monitoring->edit_data($where,'data_pengajuan')->result_array();
 
+        $data['saldo_sisa'] = $this->m_monitoring->getData('anggaran')->row();
 
         $where = array(
           'status_pengajuan' => 0,

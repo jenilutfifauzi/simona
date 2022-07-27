@@ -226,7 +226,7 @@
                         
                           </td>
                           <td>
-                          <a href="<?php echo base_url(); ?>perencanaan/rab_datadukung/<?php echo $users['kode']; ?>" class="btn btn-primary "> <i class="fas fa-eye"></i> Lihat</a>
+                          <a href="<?php echo base_url(); ?>perencanaan/rab_datadukung/<?php echo $users['kode_subkomponen']; ?>" class="btn btn-primary "> <i class="fas fa-eye"></i> Lihat</a>
                           </td>
                         </tr>
                         <?php endforeach; ?>

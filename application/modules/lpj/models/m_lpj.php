@@ -1,6 +1,27 @@
 <?php 
  
 class M_lpj extends CI_Model{
+
+
+	public function data_rab_penggunaan_keg($kode)
+    {
+		$this->db->select('*');
+		$this->db->from('d_lpj');
+		$this->db->join('tb_rab','tb_rab.kode = d_lpj.kode');
+	    $this->db->where('d_lpj.kode',$kode);
+		$hasil = $this->db->get();
+    	if ($hasil->num_rows() > 0){
+    		return $hasil->result_array();
+    	}else{
+			$this->db->select('*');
+			$this->db->from('tb_rab');
+			$this->db->where('kode',$kode);
+			$hasil = $this->db->get();
+    		return $hasil->result_array();
+    	}
+    }
+
+
 	function tampil_data(){
 		return $this->db->query("select * from data_pengajuan where status='no'");
 	}
@@ -12,7 +33,13 @@ class M_lpj extends CI_Model{
 	{
 		$this->db->select_sum('biaya');
 		$this->db->where('kode',$kode);
-		return $this->db->get('d_lpj');
+		return $this->db->get('tb_rab');
+	}
+	public function jumlah_sisa($kode)
+	{
+		$this->db->select_sum('sisa');
+		$this->db->where('kode',$kode);
+		return $this->db->get('tb_rab');
 	}
 	public function lihat_data(){
 		$id_unit = $this->session->userdata('id');

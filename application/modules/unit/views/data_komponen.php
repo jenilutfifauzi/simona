@@ -113,17 +113,6 @@
                           <td><?= $users['volume'] ?></td>
                           <td><?= $users['hargasatuan'] ?></td>
                           <td><?= $users['jumlahbiaya'] ?></td>
-                          
-                          <!-- <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Edit
-                            </button>
-
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Hapus
-                            </button>
-                          </td> -->
-
                           <td>
                           <a href="<?php echo base_url(); ?>unit/kelola_kegiatan/<?php echo $users['kode_kom']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i> Pilih </a>
                           <!-- <a href="<?php echo base_url(); ?>admin/delete/<?php echo $users['id']; ?>" class="btn btn-danger "> <i class="fas fa-trash"></i></a>

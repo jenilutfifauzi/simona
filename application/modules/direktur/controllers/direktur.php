@@ -167,4 +167,5 @@ class Direktur extends MY_Controller {
       $this->load->view('template/footer');
     }
 
+
 }

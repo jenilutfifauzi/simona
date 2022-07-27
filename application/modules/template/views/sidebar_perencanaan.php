@@ -17,6 +17,7 @@
                   <!-- <li><a class="nav-link" href="<?php echo base_url('perencanaan/tambahrka') ?>">Tambah RKA</a></li> -->
                   <li><a class="nav-link" href="<?php echo base_url('perencanaan/uploadrka') ?>">Upload RKA</a></li>
                   <li><a class="nav-link" href="<?php echo base_url('perencanaan/tambahkomponen') ?>">Tambah Komponen</a></li>
+                  <li><a class="nav-link" href="<?php echo base_url('perencanaan/tambahakunkegiatan') ?>">Tambah Akun Kegiatan</a></li>
                 </ul>
               </li>
               

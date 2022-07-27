@@ -86,7 +86,7 @@ class Ppspm extends MY_Controller {
         
         $this->load->view('template/header',$data);
         $this->load->view('template/navbar',$data);
-        $this->load->view('template/sidebar_ppk');
+        $this->load->view('template/sidebar_ppspm');
         $this->load->view('Vrekapkegiatan',$data);
         $this->load->view('template/footer');
         

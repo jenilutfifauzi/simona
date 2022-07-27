@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/datatables/buttons.bootstrap4.min.css')?>">
   <link rel="stylesheet" href="<?= base_url('assets/datatables/dataTables.bootstrap4.min.css')?>">
   <link rel="stylesheet" href="<?= base_url('assets/datatables/responsive.bootstrap4.min.css')?>">
+
   
 </head>
 <body>

@@ -4,7 +4,22 @@ class M_unit extends CI_Model{
 
 	public function get_nama_kom($kode_komponen)
     {
-        //ambil data kabupaten berdasarkan id provinsi yang dipilih
+        //ambil data 
+        $this->db->where('kode_komponen', $kode_komponen);
+        $query = $this->db->get('kode_subkomponen')->row();
+
+
+        //looping data
+        
+            $output = "<option value='$query->kegiatan'>".$query->kegiatan."<option>";
+            // $output = "<input type='text' class='form-control' id='nama_kom' name='komponen' value='.$query->kegiatan.'>";
+      
+        //return data 
+        return $output;
+    }
+	public function get_nama_komponen($kode_komponen)
+    {
+        //ambil data 
         $this->db->where('kode_komponen', $kode_komponen);
         $query = $this->db->get('kode_komponen')->row();
 
@@ -14,7 +29,7 @@ class M_unit extends CI_Model{
             $output = "<option value='$query->kegiatan'>".$query->kegiatan."<option>";
             // $output = "<input type='text' class='form-control' id='nama_kom' name='komponen' value='.$query->kegiatan.'>";
       
-        //return data kabupaten
+        //return data 
         return $output;
     }
 

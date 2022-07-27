@@ -39,6 +39,9 @@ $data_time =  $this->db->get('timeout')->result();
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
+<!-- datatables filter script  -->
+
+
   <!-- Page Specific JS File -->
 </body>
 </html>
@@ -122,9 +125,9 @@ $(document).ready( function () {
 <script>
     $(document).ready(function() {
 
-        //request data kabupaten
-        $('#kode_komponen').change(function() {
-            var kode_komponen = $('#kode_komponen').val(); //ambil value id dari provinsi
+        //request data komponen
+        $('#kode_komponen_baru').change(function() {
+            var kode_komponen = $('#kode_komponen_baru').val(); //ambil value id dari provinsi
 
             if (kode_komponen != '') {
                 $.ajax({
@@ -136,7 +139,55 @@ $(document).ready( function () {
                     },
                     success: function(data) {
                         console.log("success data ",data);
-                        $('#nama_kom').html(data)
+                        //var result = JSON.parse(data);
+                        //var tes = result.kegiatan;
+                        //console.log(tes);
+                        $('#nama_kom').html(data);
+                    }
+                    ,error: function(xhr,thrownError,ajaxOptions){
+                        console.log(xhr);
+                        console.log(thrownError);
+                        console.log(ajaxOptions);
+                    }               
+                 });
+            }
+        });
+
+        //jika tombol kirim di klik
+        $('#btnKirim').click(function() {
+            var dataprov = $('#kode_komponen').val();
+            var nama_kom = $('#nama_kom').val();
+            var kecamatan = $('#kecamatan').val();
+            var desa = $('#desa').val();
+            $('#dataprov').html(dataprov);
+            $('#nama_kom').html(nama_kom);
+            $('#datakec').html(kecamatan);
+            $('#datades').html(desa);
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function() {
+
+        //request data komponen
+        $('#kode_komponen').change(function() {
+            var kode_komponen = $('#kode_komponen').val(); //ambil value id dari kode_komponen
+
+            if (kode_komponen != '') {
+                $.ajax({
+                    url: '<?= base_url(); ?>unit/get_nama_komponen',
+                    method: 'POST',
+                    dataType:"text",
+                    data: {
+                        kode_komponen: kode_komponen
+                    },
+                    success: function(data) {
+                        console.log("success data ",data);
+                        //var result = JSON.parse(data);
+                        //var tes = result.kegiatan;
+                        //console.log(tes);
+                        $('#nama_kom').html(data);
                     }
                     ,error: function(xhr,thrownError,ajaxOptions){
                         console.log(xhr);

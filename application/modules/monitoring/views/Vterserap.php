@@ -75,7 +75,7 @@
                     <h4>Sisa Anggaran</h4>
                   </div>
                   <div class="card-header">
-                    Rp. 5.000.000.000.000
+                   <?= 'Rp. '. $saldo_sisa->sisa; ?>
                   </div>
                 </div>
                   </div>
@@ -105,7 +105,7 @@
                   <h5 class="card-title">Target Serapan Bulan ini</h5>
                   <div class="alert alert-success" role="alert">
                   <h4 class="alert-heading">Spirit!</h4>
-                  <h1><?= $data_persen_terbaru; ?></h1>
+                  <h1><?= round($data_persen_terbaru,2) .' %';?></h1>
                   <hr>
                   <p class="mb-0">Segera dilaksanakan agar mencapai target.</p>
                  </div>
@@ -120,7 +120,7 @@
                   <h4 class="alert-heading">Spirit!</h4>
                   <h1><?php echo $data_target->target; ?>%</h1>
                   <hr>
-                  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                  <p class="mb-0">Target tahun ini yang harus dicapai.</p>
                  </div>
                 </div>
               </div>
@@ -211,7 +211,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <?php echo var_dump($data_anggaran_terbaru1); ?> -->
               
 
               <div>

@@ -54,9 +54,6 @@ class Ppk extends MY_Controller {
       
 Assign by PPK
       ");
-      var_dump($pesan);
-      var_dump($tujuan);
-      
       $result = file_get_contents("http://localhost:3000/"."api?tujuan=".$tujuan."&pesan=".$pesan);
 
       // $this->session->flashdata("message","Berhasil kirim pesan");

@@ -12,10 +12,10 @@
 
     <form method="POST" action="<?= base_url('unit/aksi_tambah_data_dukung') ?>" class="needs-validation" enctype="multipart/form-data">
       <div class="form-group row">
-        <label for="inputKode" class="col-sm-2 col-form-label">Kode
-        </label>
+        <!-- <label for="inputKode" class="col-sm-2 col-form-label">Kode
+        </label> -->
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="kode" name="kode" value="<?php
+          <input type="hidden" class="form-control" id="kode" name="kode" value="<?php
            echo $kode_subkomponen;?>" 
           readonly>
         </div>
@@ -70,10 +70,10 @@
 
     <form method="POST" action="<?= base_url('unit/aksi_tambah_rab') ?>" class="needs-validation" >
       <div class="form-group row">
-        <label for="inputKode" class="col-sm-2 col-form-label">Kode
+        <!-- <label for="inputKode" class="col-sm-2 col-form-label">Kode -->
         </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="kode" name="kode" value="<?php
+          <input type="hidden" class="form-control" id="kode" name="kode" value="<?php
            echo $kode_subkomponen;?>" 
           readonly>
         </div>
@@ -116,7 +116,7 @@
       </div>
       
       <div class="form-group row">
-        <label for="inputName" class="col-sm-2 col-form-label">Total</label>
+        <!-- <label for="inputName" class="col-sm-2 col-form-label">Total</label> -->
         <div class="col-sm-10">
           <input type="hidden" class="form-control" id="total" name="total">
         </div>
