@@ -43,15 +43,14 @@
             <!-- <p class="section-lead">This page is just an example for you to create your own page.</p> -->
             <div class="card">
               <div class="card-body">
-              
-               
+              <?= $this->session->userdata('message'); ?>
               <div class="row">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Daftar Kegiatan Ajuan</h4>
                     <div class="card-header-form">
-                      
+                     
                     </div>
                   </div>
                   <div class="card-body p-0">

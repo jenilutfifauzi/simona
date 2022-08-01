@@ -1,6 +1,6 @@
 <?php
-//session tahun sekarang
-$getTahun = date('Y');
+//session tahun
+$getTahun = $this->session->userdata('tahun');
 ?>
 <!-- Main Content -->
 <div class="main-content">
@@ -108,7 +108,7 @@ $getTahun = date('Y');
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Serapan Tercapai Perbulan ini tahun <?= $getTahun ?></h5>
+            <h5 class="card-title">Serapan Tercapai Perbulan ini tahun  <?= $getTahun ?></h5>
             <div class="alert alert-success" role="alert">
               <h4 class="alert-heading">Spirit!</h4>
               <h1><?= round($getPersenYears, 2) . '%'; ?></h1>
@@ -121,7 +121,7 @@ $getTahun = date('Y');
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Target Serapan Tahun <?= $getTahun ?></h5>
+            <h5 class="card-title">Target Serapan Tahun <?= $getTahun; ?></h5>
             <div class="alert alert-success" role="alert">
               <h4 class="alert-heading">Spirit!</h4>
               <h1><?php echo $data_anggaran->target; ?>%</h1>

@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/datatables/dataTables.bootstrap4.min.css')?>">
   <link rel="stylesheet" href="<?= base_url('assets/datatables/responsive.bootstrap4.min.css')?>">
 
+  <link rel="shortcut icon" href="<?= base_url('assets/login/logo_polsub.png') ?>">
   
 </head>
 <body>

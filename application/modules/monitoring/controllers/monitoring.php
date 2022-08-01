@@ -102,43 +102,62 @@ class Monitoring extends MY_Controller {
     {
         $data = $this->session->userdata();
         $data['title'] = 'Monitoring Realisasi';
-        $where = array(
-          'status_lpj' => 2,
-        );
-        $data['data_terlaksana'] = $this->m_monitoring->edit_data($where,'data_pengajuan')->result_array();
+        $tahun = date('Y');
+        //data terlaksana
+        $data['data_terlaksana'] = $this->db->get_where('data_pengajuan',array('status_lpj' => 2,'tahun' => $tahun))->result_array();
+        //data belum terlaksana
+        $data['data_belum_terlaksana'] = $this->db->get_where('kegiatan',array('status_pengajuan' => 0,'tahun' => $tahun))->result_array();
+        //data anggaran
+        $data['data_anggaran'] = $this->m_monitoring->edit_data(array('tahun' => $tahun),'anggaran')->row();
+        //data target persen saat ini by year
+        $data_anggaran = $data['data_anggaran'];
+        $data_terserap = $data_anggaran->terserap;
+        $data_total_anggaran = $data_anggaran->anggaran;
+        $data['getPersenYears'] = ($data_terserap/$data_total_anggaran)*100;
+        //data tahun => select filter
+        $data['data_tahun'] = $this->db->query('SELECT tahun FROM kegiatan GROUP BY tahun ASC')->result_array();
+        // $data['data_persen_terbaru'] = ($data_terbaru / $data_tot ) * (100);
 
-        $data['saldo_sisa'] = $this->m_monitoring->getData('anggaran')->row();
-
-        $where = array(
-          'status_pengajuan' => 0,
-        );
-        $data['data_belum_terlaksana'] = $this->m_monitoring->edit_data($where,'kegiatan')->result_array();
-
-
-        $data['user'] = $this->m_monitoring->lihat_data()->result_array();
-        $data_anggaran = $this->kota_model->lihat_data()->result_array();
-        $data['anggaran_terserap'] = $this->m_monitoring->data_anggaran_terserap()->row();
-        $data['total_anggaran'] = $this->m_monitoring->data_anggaran_total()->row();
-
-        //data target
-        $data['data_target'] = $this->m_monitoring->getData('target')->row();
-        $data_anggaran_tot = $this->m_monitoring->data_anggaran_terserap_tot();
-        $data_anggaran_terbaru = $this->m_monitoring->data_anggaran_terserap_terbaru();
-        $data['data_anggaran_terbaru1'] = $this->m_monitoring->data_anggaran_terserap_terbaru1();
-        $data_tot = $data_anggaran_tot->jumlah_anggaran; 
-        $data_terbaru = $data_anggaran_terbaru->jumlah_anggaran; 
-
-        $data['data_persen_terbaru'] = ($data_terbaru / $data_tot ) * (100);
-      //mengirim data ke view
-      $output = array(
+        //mengirim data ke view
+        $output = array(
             'judul' => 'Pie Chart',
           );
-        
         $this->load->view('template/header',$data);
         $this->load->view('template/navbar',$data);
         $this->load->view('template/sidebar_bagiankeuangan');
         $this->load->view('Vterserap',$output);
-        $this->load->view('template/footer');
-        
+        $this->load->view('template/footer');    
+    }
+
+    ///////////////filter////////////////
+
+    public function terserap_filter()
+    {
+      
+      $data = $this->session->userdata();
+      $data['title'] = 'Monitoring Realisasi';
+      //ambil data dari form
+      $tahun = $this->input->post('tahun');
+      //set tahun ke session
+      $this->session->set_userdata('tahun',$tahun);
+      //data terlaksana
+      $data['data_terlaksana'] = $this->db->get_where('data_pengajuan',array('status_lpj' => 2,'tahun' => $tahun))->result_array();
+      //data belum terlaksana
+      $data['data_belum_terlaksana'] = $this->db->get_where('kegiatan',array('status_pengajuan' => 0,'tahun' => $tahun))->result_array();
+      //data anggaran
+      $data['data_anggaran'] = $this->m_monitoring->edit_data(array('tahun' => $tahun),'anggaran')->row();
+      //data target persen saat ini by year
+      $data_anggaran = $data['data_anggaran'];
+      $data_terserap = $data_anggaran->terserap;
+      $data_total_anggaran = $data_anggaran->anggaran;
+      $data['getPersenYears'] = ($data_terserap/$data_total_anggaran)*100;
+      //data tahun => select filter
+      $data['data_tahun'] = $this->db->query('SELECT tahun FROM kegiatan GROUP BY tahun ASC')->result_array();
+
+      $this->load->view('template/header',$data);
+      $this->load->view('template/navbar',$data);
+      $this->load->view('template/sidebar_bagiankeuangan');
+      $this->load->view('Vterserap_filter',$data);
+      $this->load->view('template/footer');
     }
 }

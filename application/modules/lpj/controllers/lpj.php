@@ -156,39 +156,43 @@ class Lpj extends MY_Controller
         $this->m_lpj->update_data($where, $update_status, 'data_pengajuan');
         $this->m_lpj->update_data($where, $update_lpj, 'data_pengajuan');
         
-        //update data anggaran
-        $where = array(
-            'kode' => $kode
-        );
-        $data_anggaran_lpj = $this->m_lpj->edit_data($where, 'tb_rab')->row();
-        $data_jumlah_anggaran_sebelum = $this->db->query("SELECT * FROM anggaran Where id = 1")->row();
-        $jumlah_sebelum = (int)$data_jumlah_anggaran_sebelum->jumlah_anggaran;
+        //update data anggaran   
+        $tahun = date('Y');
+        $data_jumlah_anggaran_sebelum_diupdate = $this->db->query("SELECT * FROM anggaran Where tahun = ".$tahun)->row();
 
-        $jumlah1 = $this->m_lpj->jumlah_anggaran($kode)->row();
-        $jumlah = (int) $jumlah1->biaya;
-        $jumtot = $jumlah_sebelum + $jumlah;
+        $jumlah_terserap_sebelum = (int)$data_jumlah_anggaran_sebelum_diupdate->terserap;
 
-        $where1 = array(
-            'id' => 1
-        );
+        $jumlah_sisa_sebelum = (int)$data_jumlah_anggaran_sebelum_diupdate->sisa;
+
+        $jumlah_anggaran_sebelum = (int)$data_jumlah_anggaran_sebelum_diupdate->anggaran;
+
+        //jumlah total anggaran yg divalidasi pada tb_rab 
+        $jumlah_terserap = $this->m_lpj->jumlah_anggaran($kode)->row();
+        $jumlah_terserap_baru = (int) $jumlah_terserap->biaya;
+        $jumtot = $jumlah_terserap_sebelum + $jumlah_terserap_baru;
+
         $update_anggaran = array(
-            'jumlah_anggaran' => $jumtot,
-        );
-        //////////sisa//////////
-        //cari data sisa
-        $data_sisa_keg = $this->m_lpj->jumlah_sisa($kode)->row();
-        $data_sisa_baru = (int)$data_sisa_keg->sisa;
-        //update sisa
-        $where_sisa = array(
-            'id' => 1
-        );
-        $update_sisa = array(
-            'sisa' => $data_sisa_baru,
+            'terserap' => $jumlah_terserap_sebelum + $jumtot,
         );
 
-        $this->m_lpj->update_data1($where1, $update_anggaran, 'anggaran');
+        $update_belum_terserap = array(
+            'belum_terserap' => $jumlah_anggaran_sebelum - ($jumlah_terserap_sebelum + $jumtot),
+        );
+        //update data anggaran terserap
+        $this->m_lpj->update_data(array('tahun' => $tahun), $update_anggaran, 'anggaran');
+        //update data anggaran belum terserap
+        $this->m_lpj->update_data(array('tahun' => $tahun), $update_belum_terserap, 'anggaran');
+
+        
+        //////////sisa//////////
+        $data_sisa = $this->m_lpj->jumlah_sisa($kode)->row();
+        $data_sisa_keg_baru = (int)$data_sisa->sisa;
         //update sisa
-        $this->m_lpj->update_data($where_sisa, $update_sisa, 'anggaran');
+        $update_sisa = array(
+            'sisa' => $jumlah_sisa_sebelum + $data_sisa_keg_baru,
+        );
+        //update sisa
+        $this->m_lpj->update_data(array('tahun' => $tahun), $update_sisa, 'anggaran');
         echo $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         Data KegiLatan Berhasil Divalidasi <button type= "button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
         </div>');
@@ -197,8 +201,16 @@ class Lpj extends MY_Controller
     public function test()
     {
         $kode = 'U001';
-        $data_sisa_keg = $this->m_lpj->jumlah_sisa($kode)->row();
-        $data = $data_sisa_keg->sisa;
+        $tahun = date('Y');
+        $data_jumlah_anggaran_sebelum_diupdate = $this->db->query("SELECT * FROM anggaran Where tahun = ".$tahun)->row();
+
+        $jumlah_terserap_sebelum = (int)$data_jumlah_anggaran_sebelum_diupdate->terserap;
+
+        $jumlah_sisa_sebelum = (int)$data_jumlah_anggaran_sebelum_diupdate->sisa;
+
+        $jumlah_anggaran_sebelum = (int)$data_jumlah_anggaran_sebelum_diupdate->anggaran;
+        
+        var_dump($jumlah_anggaran_sebelum);
     }
     public function aksi_tolak_validasi_lpj()
     {
